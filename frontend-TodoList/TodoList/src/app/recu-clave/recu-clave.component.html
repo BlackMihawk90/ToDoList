@@ -1,0 +1,37 @@
+<body>
+  <div class="container" style="  height: 100vh;" ngNativeValidate #form>
+    <div class="row justify-content-center pt-5 mt-5 mr-1">
+        <div style="background:white" class="col-md-4 formulario">
+            <form   ngNativeValidate #form>
+                <div class="form-group text-center pt-3">
+                  <h1 style="color:black" > Recuperar Contraseña</h1>
+                </div>
+                    <div class="form-group text-center pt-3">
+
+                      <h1 class="text-light"></h1>
+                    </div>
+                     <!---Modelo de  usuario--->
+                    <div class="form-group mx-sm-4 pt-3">
+                    
+                        <input  type="text" style="width: 100%;" 
+                                placeholder="Ingrese su Correo"
+                                [(ngModel)]="Email.email"
+                                [ngModelOptions]="{standalone:true}"
+                                autocomplete="off"
+                                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                                required='true'
+                                >
+                    </div>
+                    <div class="form-group mx-sm-4" >
+                      <button type="submit" (click)="olvidoSuPassword()"
+                              class="btn btn-block ingresar"  value="Recuperar">Enviar</button>
+                    </div>
+                    <div class="form-group mx-sm-4 text-right">
+                      <span><a [routerLink]="['/login']" class="regresar"> Regresar</a></span>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+  </body>

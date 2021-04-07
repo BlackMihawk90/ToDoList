@@ -1,0 +1,50 @@
+
+<body>
+
+
+  <div  style="  height: 100vh;" ngNativeValidate #form>
+    <div class="row justify-content-center pt-5 mt-5 mr-1">
+        <div style="background:white" class="col-md-4 formulario">
+            <form   ngNativeValidate #form>
+                <div class="form-group text-center pt-3">
+                  <h1 style="color:black" > Iniciar Sesión</h1>
+                </div>
+                 <!---Modelo de  usuario--->
+                <div class="form-group mx-sm-4 pt-3">
+                  <input type="email" style="width: 100%;"  id="txtcolor1" placeholder="Dirección de Correo Electronico"
+                  [(ngModel)]="Usuario.email" [ngModelOptions]="{standalone:true}"
+                  autocomplete="off"
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                  required='true'
+                  >
+                </div>
+                <!---Modelo de contraseña--->
+                <div class="form-group mx-sm-4 pt-4">
+                  <input type="password" id="txtcolor" style="width: 100%;" placeholder="Contraseña"
+                  [(ngModel)]="Usuario.password" [ngModelOptions]="{standalone:true}"
+                  pattern="[a-zA-Z]{45}"
+                  autocomplete="off"
+                  required='true'
+                  >
+
+                </div>  
+                <br/>
+                <!-- termina modulo de contra-->
+                <div  class="form-group mx-sm-4" >
+                  <input type="submit" class="btn btn-block ingresar"  (click)="login()" value="INGRESAR">
+                </div>
+                <div style="text-align: center;" >
+                  <span><a [routerLink]="['/recu-clave']" class="olvide">Olvido su contraseña, por favor hacer click aqui.</a></span>
+                </div>
+                <br/>
+                <div style="text-align: center;" >
+                  <span><a [routerLink]="['/registro']" class="registro">Primera vez que ingresa, haga click aqui.</a></span>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+</body>

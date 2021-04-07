@@ -1,0 +1,56 @@
+<body>
+<form >
+  <div class="container" style="  height: 100vh;">
+    <div class="row justify-content-center pt-5 mt-5 mr-1">
+        <div style="background:white" class="col-md-4 formulario">
+                <form  ngNativeValidate #form>
+                  <div class="form-group text-center pt-3">
+                    <h1 style="color:black" > Nuevo Usuario</h1>
+                  </div>
+                    <div class="form-group text-center pt-3">
+                      <h1 class="text-light"></h1>
+                    </div>
+                     <!---Modelo de  usuario--->
+                     <div class="form-group mx-sm-4 pt-3">
+                    
+                      <input type="text" style="width:100%" id="txtcolor" placeholder="Usuario"
+                      [(ngModel)]="Usuario.userName" [ngModelOptions]="{standalone:true}"
+                      minlength="5"
+                      autocomplete="off"
+                      required='true'
+                      >
+                    </div>
+
+                     <!---Modelo de correo--->
+                     <div class="form-group mx-sm-4 pt-3">
+                     
+                      <input type="email" style="width:100%"  id="txtcolor1" placeholder="Correo"
+                      [(ngModel)]="Usuario.email" [ngModelOptions]="{standalone:true}"
+                      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                      autocomplete="off"
+                      required='true'
+                      >
+                    </div>
+                    <!---Modelo de contraseña--->
+                    <div class="form-group mx-sm-4 pt-4">
+                      
+                      <input type="password"  style="width:100%" id="txtcolor3" placeholder="Contraseña"
+                      [(ngModel)]="Usuario.password" [ngModelOptions]="{standalone:true}"
+                      minlength="5"
+                      autocomplete="off"
+                      required='true'
+                      >
+
+                    </div>
+                    <div  class="form-group mx-sm-4" >
+                      <button type="submit" class="btn btn-block ingresar" (click)="form.checkValidity()?crearUsuario():null"  value="Guardar">Registrar</button>
+                    </div>
+                    <div class="form-group mx-sm-4 text-right">
+                      <span><a [routerLink]="['/login']" style="color:black;" class="regresar"> Regresar</a></span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+  </form>
+</body>

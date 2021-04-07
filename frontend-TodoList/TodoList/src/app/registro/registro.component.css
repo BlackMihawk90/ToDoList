@@ -1,0 +1,59 @@
+body{
+  background: linear-gradient(to right, #0062E6, #33AEFF);
+  background-color: #007bff;
+  height: 100%;
+  margin: 0;
+
+}
+.formulario{
+padding-top: 40px;
+background: rgba(0, 0, 0, .5);
+padding: 20px ;
+border-radius: 10px;
+box-shadow: 0 0 30px rgba(247, 195, 195, 0.207);
+color: black;
+}
+
+.form-control{
+background: rgba(0,0,0,.3);
+border-style: none;
+transition: 0.5s ease-in;
+outline: none;
+box-shadow: none;
+color: azure;
+}
+
+.form-control:focus{
+  background: none;
+  box-shadow: none;
+  outline: none;
+
+}
+.form-control::placeholder{
+  color: aliceblue;
+}
+.ingresar{
+  background: #007bff;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: 700!important;
+  color: white;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.568);
+  transition: 0.5s ease-in;
+}
+.ingresar:hover{
+  color: beige;
+}
+.regresar{
+  color: white;
+  text-decoration-style: none;
+  text-decoration-line: none;
+}
+.regresar:hover{
+  color: cadetblue;
+  text-decoration-style: none;
+  text-decoration-line: none;
+  cursor: pointer;
+}
+
+

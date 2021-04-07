@@ -1,0 +1,254 @@
+
+<div  style="  height: 100vh;   background: linear-gradient(to right, #0062E6, #33AEFF); background-color: #007bff;" class="container-fluid">
+  <app-navbar></app-navbar>
+<br/>
+<br/>
+  <div style="background:white; margin: auto; width: 50%; margin-top: 3px; min-width: 800px; border-radius: 14px; " class="col-md-4 formulario">
+        <h1>Lista de Tareas</h1>   
+      <div>
+        <div class="overflow-scroll-gradient__scroller">
+          <div style="text-align: center; width: 100%;">
+             <h3>Pendientes</h3>
+          </div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Tarea</th>
+              <th scope="col">Descripcion</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let v of listado_tareas">
+              <td *ngIf="v.estado===false"><input  type="checkbox"
+               [(ngModel)]="v.estado"
+               (click)="update_tareas_checkbox(v)"
+               value=""
+               id="estadocheckend"
+                >
+              </td >
+              <td *ngIf="v.estado===false">{{v.tituloDeLaTarea}}</td>
+              <td *ngIf="v.estado===false">{{v.description}}</td>
+              <td *ngIf="v.estado===false">
+                <button type="button"
+                        class="btn btn-primary"
+                        data-toggle="modal"
+                        data-target="#EditarModal"
+                        (click)="pasarTareas(v)"
+                        >
+                  Editar
+                </button>
+              </td>
+              <td *ngIf="v.estado===false">
+                  <button class="btn btn-danger" (click)="delete_tareas(v._id)">
+                      Borrar
+                  </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="text-align: center;">
+          <h3>Finalizadas</h3>
+       </div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">Tarea</th>
+              <th scope="col">Descripcion</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let v of listado_tareas">
+              <td *ngIf="v.estado===true"><input  type="checkbox"
+               [(ngModel)]="v.estado"
+               (click)="update_tareas_checkbox(v)"
+               value=""
+               id="estadocheckend"
+                >
+              </td >
+              <td *ngIf="v.estado===true">{{v.tituloDeLaTarea}}</td>
+              <td *ngIf="v.estado===true">{{v.description}}</td>
+              <td *ngIf="v.estado===true">
+                <button type="button"
+                        class="btn btn-primary"
+                        data-toggle="modal"
+                        data-target="#EditarModal"
+                        (click)="pasarTareas(v)"
+                        >
+                  Editar
+                </button>
+              </td>
+              <td *ngIf="v.estado===true">
+                  <button class="btn btn-danger" (click)="delete_tareas(v._id)">
+                      Borrar
+                  </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+
+
+        <!--Terminacion del listado de tareas-->
+
+            <!--Modal de insertar-->
+          <form >
+            <div class="modal fade" id="insertarModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Agregar tarea</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form ngNativeValidate #formInsertar>
+                      <div class="form-group">
+                        <label for="tituloDeLaTarea">Titulo</label>
+                        <input type="text"
+                               class="form-control"
+                               id="tituloDeLaTarea"
+                               placeholder="Introduzca el titulo de la tarea"
+                               [(ngModel)]="Tareas.tituloDeLaTarea"
+                               [ngModelOptions]="{standalone:true}"
+                              required="true"
+                              minlength="1"
+                              autocomplete="off"
+                               >
+                          </div>
+
+                        <div class="form-group">
+                        <label for="description">Descripcion</label>
+                        <input type="text"
+                               class="form-control"
+                               id="description"
+                               placeholder="Introduzca la descripcion de la tarea"
+                               [(ngModel)]="Tareas.description"
+                               [ngModelOptions]="{standalone:true}"
+                               required="true"
+                               pattern="[a-zA-z]+{45}"
+                               minlength="1"
+                                autocomplete="off"
+                               >
+                        </div>
+
+                        <div class="form-group">
+                          <label for="estado">Estado</label>
+                          <input type="checkbox"
+                                 class="form-control"
+                                 id="estado"
+                                 [(ngModel)]="Tareas.estado"
+                                 [ngModelOptions]="{standalone:true}">
+                        </div>
+                          <button type="submit"
+                            class="btn btn-primary"
+                            (click)="formInsertar.checkValidity()?insert_tareas():null"
+                            >Agregar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" #closebutton
+                    >Cerrar</button>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+          <!--modal insertar terminado-->
+
+
+
+          <!--Modal  update-->
+        <form >
+          <div class="modal fade" id="EditarModal" tabindex="-1" aria-labelledby="exampleModalLabelUpdate" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header" ngNativeValidate #form>
+                  <h5 class="modal-title" id="exampleModalLabelUpdate">Modificar datos de la Tarea</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form ngNativeValidate #formUpdate>
+                    <div class="form-group">
+                      <label for="tituloDeLaTarea2">Titulo</label>
+                      <input type="text"
+                             class="form-control"
+
+                             placeholder="Introduzca el titulo de la tarea"
+                             [(ngModel)]="TareaActualizar.tituloDeLaTarea"
+                             [ngModelOptions]="{standalone:true}"
+
+                              autocomplete="off"
+                              required='true'
+                              minlength="1"
+                             >
+                        </div>
+
+                      <div class="form-group">
+                      <label for="description">Descripcion</label>
+                      <input type="text"
+                             class="form-control"
+
+                             placeholder="Introduzca la descripcion de la tarea"
+                             [(ngModel)]="TareaActualizar.description"
+                             [ngModelOptions]="{standalone:true}"
+
+                            minlength="1"
+                            autocomplete="off"
+                            required='true'
+                             >
+                      </div>
+
+                      <div class="form-group">
+                        <label for="estado">Estado</label>
+                        <input type="checkbox"
+                               class="form-control"
+
+                               [(ngModel)]="TareaActualizar.estado"
+                               [ngModelOptions]="{standalone:true}"
+
+                               >
+                      </div>
+                      <div class="form-group">
+                        <input type="text"
+                               class="form-control"
+                               id="_id"
+                               [(ngModel)]="TareaActualizar._id"
+                               [ngModelOptions]="{standalone:true}"
+                               hidden>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="submit"
+                                class="btn btn-primary"
+                                (click)="formUpdate.checkValidity()?update_tareas():null"
+                                >Guardar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" #closebuttonUpdate>Cerrar</button>
+                      </div>
+                  </form>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </form>
+          <!--Modal update terminado-->
+
+          <br>  <br>  <br>  <br>  <br>
+
+        </div>
+</div>
+<!-- boton de agregar-->
+<div style="float: left; " class="add-to-do">
+  <ul>
+   
+ <i class="fa fa-plus-circle"  data-toggle="modal" data-target="#insertarModal" (click)="get_idusuario()" ></i>
+  </ul>
+</div>
