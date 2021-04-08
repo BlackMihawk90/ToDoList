@@ -63,10 +63,10 @@ const login = async( req, res) =>{
                 res.send({status: userID1._id, data: {token}})
                 //res.send({status: token})
             }else{
-                res.status(403).send({status: 'Contraseña Incorrecta ¡BRO! :('})
+                res.status(403).send({status: 'Contraseña Incorrecta :('})
             }
         }else{
-            res.status(401).send({status: 'Correo no encontrado no econtrado'})
+            res.status(401).send({status: 'Correo electronico no encontrado'})
         }
     } catch (error) {
         res.status(500).send({status: '¡ERROR!', message: error.message})
@@ -86,9 +86,6 @@ const get_idUsuario = async(req, res) => {
         res.status(500).send({status:'ERROR', data: error.message})
     }
 }
-
-
-
 
 
 // exporto las funciones

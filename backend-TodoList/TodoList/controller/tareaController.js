@@ -1,7 +1,7 @@
 const Tarea = require('../models/tarea');
 
 
-// ejemplo del controlador, PUEDES BORRARLO
+// ejemplo del controlador, 
 const getTareas = async(req, res) => {
     try {
         const verTarea = await Tarea.find({});

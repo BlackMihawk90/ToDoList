@@ -19,7 +19,7 @@ const envioDelToken = async (req, res) =>{
         const correoExisteEnDB = await ModeloUsuario.findOne({email})
         if (correoExisteEnDB) {
             
-            // traigo el token del objeto correoExisteEnDB
+            
             let tokenBaseDeDatos = correoExisteEnDB.token
             
             let transporte = nodemailer.createTransport({
@@ -30,12 +30,12 @@ const envioDelToken = async (req, res) =>{
                 }
             })
             
-            // todo: mejorar el html 
+         
             let opcionesEmail = {
                 from: "proyectotodolist@gmail.com",
                 to: email,
                 subject: "enviado desde nodemailer",
-                html:` ${tokenBaseDeDatos}    Copee este token y ingreselo en el 
+                html:` ${tokenBaseDeDatos}    Copie este token y ingreselo en el 
                         siguiente formulario:
                         href="http://localhost:4200/tokenform`
                 
